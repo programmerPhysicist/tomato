@@ -33,11 +33,11 @@ int main()
   //time_t now;
   bool success;
   
-  //double seconds;
-  
+  cout << "Starting work time\n";
+  success = timer(25);
+  cout << "Breaktime!";
   success = timer(5);
-  
-  cout << "Your time is up!\n";
+  cout << "Time to work again!\n";
 }
 
 bool timer(int minutes)
@@ -46,6 +46,7 @@ bool timer(int minutes)
   for (int i = 0; i < minutes; i++)
     {
       //display
+      cout << endl;
       cout << (minutes - i) << " minutes remaining\n";
       //wait
       WAIT(waitTime);
