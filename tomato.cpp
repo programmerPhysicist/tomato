@@ -7,19 +7,8 @@
  *    A timer
  ************************************************************************/
 #include <iostream>
-#ifdef _WIN32
-//windows stuff
-#include <windows.h>
-//#include "tchar.h"
-#define WAIT Sleep
-#define SECOND 1000
-#elif defined(__unix__) || defined(__linux__)
-//linux and unix stuff
-#include <ctime>
-#include <unistd.h>
-#define WAIT usleep
-#define SECOND 1000000
-#endif
+#include "tomato.h"
+#include "settings.h"
 using namespace std;
 
 bool timer(int minutes);
@@ -31,13 +20,22 @@ int main()
 
   //initialize stuff
   //time_t now;
+  settings config;
+  config.loadConfig(CONFIG_FILE);
   bool success;
-  
-  cout << "Starting work time\n";
-  success = timer(25);
-  cout << "Breaktime!";
-  success = timer(5);
-  cout << "Time to work again!\n";
+  while(true)
+    {
+      for (int i = 0; i < 4; i++)
+	{
+	  cout << "Time to work!\a\n";
+	  success = timer(config.workTime);
+	  cout << "Breaktime!\a\n";
+	  success = timer(config.shortBreak);
+	}
+      cout << "Time for long break!\a\n";
+      success = timer(config.longBreak);
+    }
+  return 0;
 }
 
 bool timer(int minutes)
