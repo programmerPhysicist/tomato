@@ -8,10 +8,12 @@ make
 ./tomato
 --Note: To run while doing other work on commandline
 ./tomato&
+--Windows
+tomato
 
 **Settings**
---Linux
-Find the .tomato file and open:
+Find the .tomato file and open using your favorite text editor
+For instance in Linux:
 emacs .tomato
 or
 vi .tomato
