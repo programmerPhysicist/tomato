@@ -2,8 +2,6 @@
 cd source_code_folder
 make
 
---Note: You can change the work time and break times to what you desire
-
 **To run**
 ./tomato
 --Note: To run while doing other work on commandline

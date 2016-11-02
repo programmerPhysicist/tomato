@@ -9,12 +9,13 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <string>
 #include "settings.h"
 using namespace std;
 
 bool settings::loadConfig(string configFileName)
 {
-  cout << "loading configuration\n";
+  //cout << "loading configuration\n";
   //initialize
   ifstream fin;
   string line;
@@ -23,7 +24,7 @@ bool settings::loadConfig(string configFileName)
   int split;
 
   //open our file
-  fin.open(".tomato");
+  fin.open(configFileName.c_str());
 
   //check to see if open
   if (!fin.is_open())

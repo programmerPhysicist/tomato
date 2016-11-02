@@ -7,19 +7,18 @@
  *    A timer
  ************************************************************************/
 #include <iostream>
+#include <cstdlib>
+#include "stdio.h"
 #include "tomato.h"
 #include "settings.h"
 using namespace std;
 
 bool timer(int minutes);
+void playAlarm();
 
 int main()
 {
-  //get time
-  //time_t initialTime = time(NULL); //get current time
-
   //initialize stuff
-  //time_t now;
   settings config;
   config.loadConfig(CONFIG_FILE);
   bool success;
@@ -27,12 +26,15 @@ int main()
     {
       for (int i = 0; i < 4; i++)
 	{
-	  cout << "Time to work!\a\n";
+	  cout << "Time to work!\n";
+	  playAlarm();
 	  success = timer(config.workTime);
-	  cout << "Breaktime!\a\n";
+	  cout << "Breaktime!\n";
+	  playAlarm();
 	  success = timer(config.shortBreak);
 	}
-      cout << "Time for long break!\a\n";
+      cout << "Time for long break!\n";
+      playAlarm();
       success = timer(config.longBreak);
     }
   return 0;
@@ -50,4 +52,9 @@ bool timer(int minutes)
       WAIT(waitTime);
     }
   return true;
+}
+
+void playAlarm()
+{
+  system("paplay 'sounds/alarm_tones/ringing.wav'");
 }
