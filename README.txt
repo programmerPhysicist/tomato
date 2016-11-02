@@ -1,3 +1,5 @@
+Linux is supported only, currently.
+
 **To Compile**
 cd source_code_folder
 make
