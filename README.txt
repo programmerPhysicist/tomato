@@ -1,4 +1,4 @@
-Linux is supported only, currently.
+Not tested for Windows yet. The sound will not work currently in Windows.
 
 **To Compile**
 cd source_code_folder

@@ -57,6 +57,8 @@ bool timer(int minutes)
 
 void playAlarm()
 {
+  #ifdef LINUX_UNIX
   //play ringing sound
   system("paplay 'sounds/alarm_tones/ringing.wav'");
+  #endif
 }

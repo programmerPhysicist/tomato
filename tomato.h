@@ -22,6 +22,7 @@
 #elif defined(__unix__) || defined(__linux__)
 #include <ctime>
 #include <unistd.h>
+#define LINUX_UNIX
 #define WAIT usleep
 #define SECOND 1000000
 
