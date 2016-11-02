@@ -15,7 +15,6 @@ using namespace std;
 
 bool settings::loadConfig(string configFileName)
 {
-  //cout << "loading configuration\n";
   //initialize
   ifstream fin;
   string line;

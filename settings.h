@@ -18,7 +18,7 @@ class settings
       workTime = 25;
       shortBreak = 5;
       longBreak = 15;
-      //std::cerr << "I have been initialized\n";
+      
     };
   settings(unsigned int work, unsigned int s, unsigned int l)
     {
