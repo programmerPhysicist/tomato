@@ -8,6 +8,7 @@
  ************************************************************************/
 #include <iostream>
 #include <cstdlib>
+#include <iomanip>
 #include "stdio.h"
 #include "tomato.h"
 #include "settings.h"
@@ -26,15 +27,15 @@ int main()
     {
       for (int i = 0; i < 4; i++) //loop thru 4 pomodoros
 	{
-	  cout << endl << "\t**Time to work!**\n";
+	  cout << "**Time to work!**\n";
 	  playAlarm();
 	  success = timer(config.workTime);
-	  cout << endl << "\t**Breaktime!**\n";
+	  cout << endl << "**Breaktime!**\n";
 	  playAlarm();
 	  success = timer(config.shortBreak);
 	}
       //then long break
-      cout << "\t**Time for long break!**\n";
+      cout << "**Time for long break!**\n";
       playAlarm();
       success = timer(config.longBreak);
     }
@@ -47,8 +48,9 @@ bool timer(int minutes)
   for (int i = 0; i < minutes; i++) //loop thru minutes
     {
       //display
-      cout << endl;
-      cout << "\tTime left:" << (minutes - i) << "m" << endl;
+      //cout << "\033[2K";
+      cout << "Time left: ";
+      cout << setw(3) << (minutes - i) << "m" << endl;;
       //wait
       WAIT(waitTime); //wait one minute
     }
