@@ -24,19 +24,27 @@ int main()
   config.loadConfig(CONFIG_FILE); //load settings into config
   bool success;
   //cout << "0x9B 0x3F 0x32 0x35 0x6C";
-  while(true) //loop forever, or until user
+  while(true) //loop forever, or until user kills program
     {
       for (int i = 0; i < 4; i++) //loop thru 4 pomodoros
 	{
 	  cout << "**Time to work!**\n";
 	  playAlarm();
 	  success = timer(config.workTime);
-	  cout << endl << "**Breaktime!**\n";
+	  cout << "\033[A"; //move up
+	  cout << "\033[10D"; //move left
+	  cout << "\033[2K"; //erase line
+	  cout << "**Breaktime!**\n";
 	  playAlarm();
 	  success = timer(config.shortBreak);
-	  cout << endl;
+	  cout << "\033[A";
+	  cout << "\033[10D";
+	  cout << "\033[2K";
 	}
       //then long break
+      cout << "\033[A";
+      cout << "\033[10D";
+      cout << "\033[2K";
       cout << "**Time for long break!**\n";
       playAlarm();
       success = timer(config.longBreak);
