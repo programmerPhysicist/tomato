@@ -1,4 +1,4 @@
 #settings file
-worktime = 20
-breaktime = 10
-longbreak = 30
+worktime = 25
+breaktime = 5
+longbreak = 15
