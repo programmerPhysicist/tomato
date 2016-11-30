@@ -8,6 +8,7 @@
  ************************************************************************/
 #include <iostream>
 #include <cstdlib>
+#include <iomanip>
 #include "stdio.h"
 #include "tomato.h"
 #include "settings.h"
@@ -22,19 +23,29 @@ int main()
   settings config; //initialize settings object
   config.loadConfig(CONFIG_FILE); //load settings into config
   bool success;
-  while(true) //loop forever, or until user
+  //cout << "0x9B 0x3F 0x32 0x35 0x6C";
+  while(true) //loop forever, or until user kills program
     {
       for (int i = 0; i < 4; i++) //loop thru 4 pomodoros
 	{
-	  cout << endl << "\t**Time to work!**\n";
+	  cout << "**Time to work!**\n";
 	  playAlarm();
 	  success = timer(config.workTime);
-	  cout << endl << "\t**Breaktime!**\n";
+	  cout << "\033[A"; //move up
+	  cout << "\033[10D"; //move left
+	  cout << "\033[2K"; //erase line
+	  cout << "**Breaktime!**\n";
 	  playAlarm();
 	  success = timer(config.shortBreak);
+	  cout << "\033[A";
+	  cout << "\033[10D";
+	  cout << "\033[2K";
 	}
       //then long break
-      cout << "\t**Time for long break!**\n";
+      cout << "\033[A";
+      cout << "\033[10D";
+      cout << "\033[2K";
+      cout << "**Time for long break!**\n";
       playAlarm();
       success = timer(config.longBreak);
     }
@@ -44,13 +55,16 @@ int main()
 bool timer(int minutes)
 {
   int waitTime = 60*SECOND; //one minute
+  cout << "Time left:";
   for (int i = 0; i < minutes; i++) //loop thru minutes
     {
       //display
-      cout << endl;
-      cout << "\tTime left:" << (minutes - i) << "m" << endl;
+      //display time in minutes
+      cout << setw(3) << (minutes - i) << "m" << flush;
       //wait
       WAIT(waitTime); //wait one minute
+      //move cursor back to write new time
+      cout << "\033[4D";
     }
   return true;
 }
