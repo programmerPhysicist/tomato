@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#set present working directory for tomato
+TOMATO_PWD=$(pwd)
+export TOMATO_PWD
+
+#move into directory
+cd src
+
+#compile code using make
+make

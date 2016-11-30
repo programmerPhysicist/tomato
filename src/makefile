@@ -11,7 +11,7 @@
 # tomato
 #########################################################################
 tomato: tomato.cpp tomato.h settings.o
-	g++ -o /home/alexander/code/projects/tomato/develop/bin/tomato settings.o tomato.cpp
+	g++ -o $(TOMATO_PWD)/bin/tomato settings.o tomato.cpp
 
 testSettings: settings.o testSettings.cpp
 	g++ -o testSettings settings.o testSettings.cpp
