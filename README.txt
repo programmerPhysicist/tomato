@@ -1,4 +1,3 @@
-The sound will not work currently in Windows.
 
 **To Compile**
 cd source_code_folder
@@ -8,7 +7,7 @@ make
 ./tomato
 --Note: To run while doing other work on commandline
 ./tomato&
---Windows
+--Windows*
 tomato
 
 **Settings**
@@ -19,3 +18,6 @@ or
 vi .tomato
 
 The first line is the work time, second is the length of the break, and the last line is that of the long break. Numbers are in minutes.
+
+*Currently, Windows is not fully supported. Compile this program for Windows
+at your own cost.
