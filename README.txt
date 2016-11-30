@@ -2,10 +2,18 @@ The sound will not work currently in Windows.
 
 **To Compile**
 cd source_code_folder
-make
+chmod +x compile
+./compile
+
 
 **To run**
+cd source_code_folder/bin
 ./tomato
+
+OR
+cd source_code_folder
+./bin/tomato
+
 --Note: To run while doing other work on commandline
 ./tomato&
 --Windows
