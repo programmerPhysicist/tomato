@@ -6,21 +6,17 @@
 # Summary: 
 #    Makefile for Tomato
 #########################################################################
+SHELL = /bin/sh
+CXX=g++
+CFLAGS=-I.
+DEPS = settings.h
+OBJ = settings.o tomato.o
 
-#########################################################################
-# tomato
-#########################################################################
-tomato: tomato.cpp tomato.h settings.o
-	g++ -o $(TOMATO_PWD)/bin/tomato settings.o tomato.cpp
+%.o: %.cpp $(DEPS)
+	$(CXX) -c -o $@ $< $(CFLAGS)
 
-testSettings: settings.o testSettings.cpp
-	g++ -o testSettings settings.o testSettings.cpp
-
-#########################################################################
-# Individual files
-#########################################################################
-settings.o: settings.h settings.cpp
-	g++ -c settings.cpp
+tomato: tomato.o settings.o
+	$(CXX) -o $@ $^ $(CFLAGS)
 
 #########################################################################
 # General rules
