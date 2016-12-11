@@ -10,18 +10,21 @@ SHELL = /bin/sh
 CXX=g++
 CFLAGS=-I.
 DEPS = settings.h
-OBJ = settings.o tomato.o
+EXDIR = $(ROOT_TOMATO)/bin
+OBJDIR = $(ROOT_TOMATO)/obj
+TARGET = $(EXDIR)/tomato
+OBJECTS = $(addprefix $(OBJDIR)/, settings.o tomato.o)
 
-%.o: %.cpp $(DEPS)
-	$(CXX) -c -o $@ $< $(CFLAGS)
+$(OBJDIR)/%.o: %.cpp $(DEPS)
+	$(CXX) -c -o $@ $<
 
-tomato: tomato.o settings.o
+$(TARGET): $(OBJECTS)
 	$(CXX) -o $@ $^ $(CFLAGS)
 
 #########################################################################
 # General rules
 #########################################################################
 clean:
-	rm a.out *.o
+	rm -f $(TARGET) $(OBJDIR)/*.o
 
-all: tomato
+all: $(TARGET)
