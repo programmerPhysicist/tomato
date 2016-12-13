@@ -1,10 +1,7 @@
 The sound will not work currently in Windows.
 
 **To Compile**
-cd source_code_folder
-chmod +x compile
-sh compile.sh
-
+make
 
 **To run**
 cd source_code_folder/bin
