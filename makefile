@@ -1,8 +1,33 @@
-#Main makefile for project
+#########################################################################
+# Program:
+#    Tomato - timer for Pomodoro technique
+# Author:
+#    Alexander Marvin
+# Summary: 
+#    Makefile for Tomato
+#########################################################################
+SHELL = /bin/sh
+CXX=g++
+CFLAGS=-I.
+OBJDIR = obj
+TARGET = bin/tomato
+OBJECTS = $(addprefix $(OBJDIR)/, settings.o tomato.o)
 
-#Get root compile directory
-ROOT_TOMATO = $(shell pwd)
-export ROOT_TOMATO
+#########################################################################
+# General rules
+#########################################################################
+all: $(TARGET)
 
-All:
-	$(MAKE) -C src
+clean:
+	rm -f $(OBJDIR)/* $(TARGET)/*
+
+#########################################################################
+# Generic build rules
+#########################################################################
+$(OBJDIR)/%.o: src/%.cpp
+	$(CXX) -c -o $@ $<
+
+$(TARGET): $(OBJECTS)
+	$(CXX) -o $@ $^ $(CFLAGS)
+
+
