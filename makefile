@@ -9,7 +9,7 @@
 SHELL = /bin/sh
 CXX=g++
 CFLAGS=-I.
-OBJDIR = obj
+OBJDIR = build
 TARGET = bin/tomato
 OBJECTS = $(addprefix $(OBJDIR)/, settings.o tomato.o)
 
@@ -29,5 +29,3 @@ $(OBJDIR)/%.o: src/%.cpp
 
 $(TARGET): $(OBJECTS)
 	$(CXX) -o $@ $^ $(CFLAGS)
-
-
