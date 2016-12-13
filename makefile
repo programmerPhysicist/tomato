@@ -19,7 +19,7 @@ OBJECTS = $(addprefix $(OBJDIR)/, settings.o tomato.o)
 all: $(TARGET)
 
 clean:
-	rm -f $(OBJDIR)/* $(TARGET)/*
+	rm -f $(OBJDIR)/*.o $(TARGET)
 
 #########################################################################
 # Generic build rules
