@@ -1,10 +1,15 @@
 
 **To Compile**
-cd source_code_folder
 make
 
 **To run**
+cd source_code_folder/bin
 ./tomato
+
+OR
+cd source_code_folder
+./bin/tomato
+
 --Note: To run while doing other work on commandline
 ./tomato&
 --Windows*

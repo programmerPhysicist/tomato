@@ -6,26 +6,26 @@
 # Summary: 
 #    Makefile for Tomato
 #########################################################################
-
-#########################################################################
-# tomato
-#########################################################################
-tomato: tomato.cpp tomato.h settings.o
-	g++ -o tomato settings.o tomato.cpp
-
-testSettings: settings.o testSettings.cpp
-	g++ -o testSettings settings.o testSettings.cpp
-
-#########################################################################
-# Individual files
-#########################################################################
-settings.o: settings.h settings.cpp
-	g++ -c settings.cpp
+SHELL = /bin/sh
+CXX=g++
+CFLAGS=-I.
+OBJDIR = build
+TARGET = bin/tomato
+OBJECTS = $(addprefix $(OBJDIR)/, settings.o tomato.o)
 
 #########################################################################
 # General rules
 #########################################################################
-clean:
-	rm a.out *.o
+all: $(TARGET)
 
-all: tomato
+clean:
+	rm -f $(OBJDIR)/* $(TARGET)/*
+
+#########################################################################
+# Generic build rules
+#########################################################################
+$(OBJDIR)/%.o: src/%.cpp
+	$(CXX) -c -o $@ $<
+
+$(TARGET): $(OBJECTS)
+	$(CXX) -o $@ $^ $(CFLAGS)
