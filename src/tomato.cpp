@@ -8,7 +8,7 @@
  ************************************************************************/
 #include <iostream>
 #include <cstdlib>
-#include <curses.h>
+#include <ncurses.h>
 #include "stdio.h"
 #include "tomato.h"
 #include "settings.h"
