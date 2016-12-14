@@ -84,19 +84,32 @@ void playAlarm()
 void waitForUser()
 { //wait for user to start timer
   char a;
-  do
+  cout << "Start timer(y/n): ";
+  cin >> a;
+  while (a != 'y' && a != 'Y')
     {
-      cout << "\tStart timer(y/n): ";
-      cin >> a;
       if (a == 'n' || a == 'N')
 	{ //if no, ask if they want to quit
-	  cout << "\tWould you like to quit(y/n): ";
+	  cout << "\033[A";
+	  cout << "\033[18D";
+	  cout << "\033[2K";
+	  cout << "Would you like to quit(y/n): ";
 	  cin >> a;
 	  if (a == 'y' || a == 'Y')
 	    exit(0); //if yes, quit application
+	  cout << "\033[A";
+	  cout << "\033[25D";
+	  cout << "\033[2K";
 	}
+      cout << "\033[A";
+      cout << "\033[18D";
+      cout << "\033[2K";
+      cout << "Start timer(y/n): ";
+      cin >> a;
     }
-  while (a != 'y' && a != 'Y');
+  cout << "\033[A";
+  cout << "\033[18D";
+  cout << "\033[2K";
   //if yes exit loop and return
   return;
 }
