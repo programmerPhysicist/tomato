@@ -16,6 +16,7 @@ using namespace std;
 
 bool timer(int minutes);
 void playAlarm();
+void waitForUser();
 
 int main()
 {
@@ -29,14 +30,17 @@ int main()
 	{
 	  cout << endl << "\t**Time to work!**\n";
 	  playAlarm();
+	  waitForUser();
 	  success = timer(config.workTime);
 	  cout << endl << "\t**Breaktime!**\n";
 	  playAlarm();
+	  waitForUser();
 	  success = timer(config.shortBreak);
 	}
       //then long break
       cout << "\t**Time for long break!**\n";
       playAlarm();
+      waitForUser();
       success = timer(config.longBreak);
     }
   return 0;
@@ -62,4 +66,24 @@ void playAlarm()
   //play ringing sound
   system("paplay 'sounds/alarm_tones/ringing.wav'");
   #endif
+}
+
+void waitForUser()
+{ //wait for user to start timer
+  char a;
+  do
+    {
+      cout << "\tStart timer(y/n): ";
+      cin >> a;
+      if (a == 'n' || a == 'N')
+	{ //if no, ask if they want to quit
+	  cout << "\tWould you like to quit(y/n): ";
+	  cin >> a;
+	  if (a == 'y' || a == 'Y')
+	    exit(0); //if yes, quit application
+	}
+    }
+  while (a != 'y' && a != 'Y');
+  //if yes exit loop and return
+  return;
 }
