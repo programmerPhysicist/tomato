@@ -24,10 +24,10 @@ int main()
   settings config; //initialize settings object
   config.loadConfig(CONFIG_FILE); //load settings into config
   bool success;
-  //cout << "0x9B 0x3F 0x32 0x35 0x6C";
+  
   while(true) //loop forever, or until user kills program
     {
-      for (int i = 0; i < 4; i++) //loop thru 4 pomodoros
+      for (int i = 0; i < 3; i++) //loop thru 4 pomodoros
 	{
 	  cout << "**Time to work!**\n";
 	  playAlarm();
@@ -44,6 +44,11 @@ int main()
 	  cout << "\033[10D";
 	  cout << "\033[2K";
 	}
+      //last pomodoro
+      cout << "**Time to work!**\n";
+      playAlarm();
+      waitForUser();
+      success = timer(config.workTime);
       //then long break
       cout << "\033[A";
       cout << "\033[10D";
@@ -52,6 +57,10 @@ int main()
       playAlarm();
       waitForUser();
       success = timer(config.longBreak);
+      //prepare to go back to work
+      cout << "\033[A";
+      cout << "\033[25D";
+      cout << "\033[2K";
     }
   return 0;
 }
@@ -101,9 +110,14 @@ void waitForUser()
 	  cout << "\033[25D";
 	  cout << "\033[2K";
 	}
-      cout << "\033[A";
-      cout << "\033[18D";
-      cout << "\033[2K";
+      else
+	{
+	  cout << "\033[A";
+	  cout << "\033[18D";
+	  cout << "\033[2K";
+	  cout << "Please try again! ";
+	}
+      
       cout << "Start timer(y/n): ";
       cin >> a;
     }
