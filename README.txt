@@ -1,4 +1,4 @@
-#Tomato
+Tomato
 Version: 0.1, beta 12/21/2016
 Author: Alex Marvin
 
@@ -15,7 +15,7 @@ Running
 cd source_code_folder/bin
 ./tomato
 
---Note: To run while doing other work on commandline
+To run while doing other work on command line:
 ./tomato&
 
 Configuration
