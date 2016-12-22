@@ -5,7 +5,9 @@ Author: Alex Marvin
 Introduction
 ------------
 
-This program allows one to use the Pomodoro techique on the command line. The Pomodoro technique is a productivity technique in which you work for 25 minutes and then take a 5 minute break. Then you work for another 25 minutes. You repeat as many times as necessary.
+This program allows one to use the Pomodoro techique on the command line. The Pomodoro technique is a productivity
+technique in which you work for 25 minutes and then take a 5 minute break. Then you work for another 25 minutes. 
+You repeat as many times as necessary.
 
 Simply use make to compile
 
@@ -18,12 +20,15 @@ cd source_code_folder/bin
 To run while doing other work on command line:
 ./tomato&
 
+Before the timer starts it will ask you if you want to start. Press y to start. To quit press n, and press y when it asks you to quit.
+
 Configuration
 -------------
 
 Find the .tomato file and open using your favorite text editor
 
-The first line is the work time, second is the length of the break, and the last line is that of the long break. Numbers are in minutes.
+The first line is the work time, second is the length of the break, and the last line is that of the long break.
+Numbers are in minutes.
 
 *Currently, Windows is not fully supported. Compile this program for Windows
 at your own risk.
