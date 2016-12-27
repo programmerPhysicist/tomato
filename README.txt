@@ -1,34 +1,74 @@
 Tomato
-Version: 0.1, beta 12/21/2016
+Version: 0.1, beta 12/26/2016
 Author: Alex Marvin
 
 Introduction
 ------------
 
-This program allows one to use the Pomodoro techique on the command line. The Pomodoro technique is a productivity
-technique in which you work for 25 minutes and then take a 5 minute break. Then you work for another 25 minutes. 
-You repeat as many times as necessary.
+This program allows one to use the Pomodoro techique on the command line.
+The Pomodoro technique is a productivity technique in which you work for
+25 minutes and then take a 5 minute break. Then you work for another 25
+minutes. Each 25 minute period is known as a Pomodoro. You repeat as many
+times as necessary. After 4 Pomodoros, you take a longer break.
 
-Simply use make to compile
+Getting Started/Running
+-----------------------
 
-Running
--------
+Simply run 'make' in the 'tomato' directory to compile the code.
 
+To run:
 cd source_code_folder/bin
 ./tomato
 
 To run while doing other work on command line:
 ./tomato&
 
-Before the timer starts it will ask you if you want to start. Press y to start. To quit press n, and press y when it asks you to quit.
+Before the timer starts it will ask you if you want to start. Press y to
+start. To quit press n, and press y when it asks you to quit.
+
+Installation
+------------
+
+To install for a user:
+Add "/directory/structure/tomato/bin/tomato" to your "PATH" environment
+variable. You can do this by adding
+export PATH=$PATH:/directory/structure/tomato/bin/tomato
+to your "~/.profile" file.
+
+To install for all users:
+Open "/etc/environment", go to the line for "PATH" and append
+:/directory/structure/tomato/bin/tomato to the end.
+
+Alternatively, you can create a symlink:
+cd /usr/bin
+sudo ln -s /directory/structure/tomato/bin/tomato tomato
+
+Prerequisites
+-------------
+
+*PulseAudio sound server
+
+This should be installed by default on most Debian and Redhat desktop systems.
+If it is not installed for whatever reason, to install:
+
+Debian based systems:
+apt-get install pulseaudio
+
+To install in Fedora or similar systems:
+dnf install pulseaudio 
 
 Configuration
 -------------
 
 Find the .tomato file and open using your favorite text editor
 
-The first line is the work time, second is the length of the break, and the last line is that of the long break.
-Numbers are in minutes.
+The first line is the work time, second is the length of the break, and
+the last line is that of the long break. Numbers are in minutes.
 
-*Currently, Windows is not fully supported. Compile this program for Windows
-at your own risk.
+The format is:
+keyword = #
+* keyword is either "worktime", "breaktime", or "longbreak"
+* # is any integer
+* There must be spaces before and after each equal sign
+* Any extra white spaces beyond those may cause the program to throw an
+  error.
