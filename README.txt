@@ -26,23 +26,6 @@ To run while doing other work on command line:
 Before the timer starts it will ask you if you want to start. Press y to
 start. To quit press n, and press y when it asks you to quit.
 
-Installation
-------------
-
-To install for a user:
-Add "/directory/structure/tomato/bin/tomato" to your "PATH" environment
-variable. You can do this by adding
-export PATH=$PATH:/directory/structure/tomato/bin/tomato
-to your "~/.profile" file.
-
-To install for all users:
-Open "/etc/environment", go to the line for "PATH" and append
-:/directory/structure/tomato/bin/tomato to the end.
-
-Alternatively, you can create a symlink:
-cd /usr/bin
-sudo ln -s /directory/structure/tomato/bin/tomato tomato
-
 Prerequisites
 -------------
 
