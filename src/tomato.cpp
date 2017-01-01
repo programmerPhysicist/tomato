@@ -26,7 +26,7 @@ int main()
   bool success;
   while(true) //loop forever, or until user
     {
-      for (int i = 0; i < 4; i++) //loop thru 4 pomodoros
+      for (int i = 0; i < 3; i++) //loop thru 4 pomodoros
 	{
 	  cout << endl << "\t**Time to work!**\n";
 	  playAlarm();
@@ -37,6 +37,10 @@ int main()
 	  waitForUser();
 	  success = timer(config.shortBreak);
 	}
+      cout << endl << "\t**Time to work!**\n";
+      playAlarm();
+      waitForUser();
+      success = timer(config.workTime);
       //then long break
       cout << "\t**Time for long break!**\n";
       playAlarm();
