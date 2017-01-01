@@ -29,19 +29,15 @@ start. To quit press n, and press y when it asks you to quit.
 Installation
 ------------
 
-To install for a user:
-Add "/directory/structure/tomato/bin/tomato" to your "PATH" environment
-variable. You can do this by adding
-export PATH=$PATH:/directory/structure/tomato/bin/tomato
-to your "~/.profile" file.
+To install, open tomato.sh and set the value of 'TOMATO_DIR' to the file
+path of the "tomato" folder.
 
-To install for all users:
-Open "/etc/environment", go to the line for "PATH" and append
-:/directory/structure/tomato/bin/tomato to the end.
+Then run
+chmod +x tomato.sh
 
-Alternatively, you can create a symlink:
-cd /usr/bin
-sudo ln -s /directory/structure/tomato/bin/tomato tomato
+Next move tomato.sh to /usr/local/bin or /usr/bin
+
+Alternatively, you can create a symlink to the location of tomato.sh
 
 Prerequisites
 -------------
