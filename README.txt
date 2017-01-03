@@ -35,7 +35,8 @@ path of the "tomato" folder.
 Then run
 chmod +x tomato.sh
 
-Next move tomato.sh to /usr/local/bin or /usr/bin
+Next move tomato.sh to /usr/local/bin or /usr/bin.
+Then, create a symlink called tomato in the bin folder.
 
 Alternatively, you can create a symlink to the location of tomato.sh
 
