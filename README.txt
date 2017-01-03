@@ -26,6 +26,19 @@ To run while doing other work on command line:
 Before the timer starts it will ask you if you want to start. Press y to
 start. To quit press n, and press y when it asks you to quit.
 
+Installation
+------------
+
+To install, open tomato.sh and set the value of 'TOMATO_DIR' to the file
+path of the "tomato" folder.
+
+Then run
+chmod +x tomato.sh
+
+Next move tomato.sh to /usr/local/bin or /usr/bin
+
+Alternatively, you can create a symlink to the location of tomato.sh
+
 Prerequisites
 -------------
 
