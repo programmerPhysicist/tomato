@@ -16,7 +16,7 @@ times as necessary. After 4 Pomodoros, you take a longer break.
 Getting Started/Running
 -----------------------
 
-Simply run 'make' in the 'tomato' directory to compile the code.
+Simply run `make` in the 'tomato' directory to compile the code.
 
 To run:
 cd source_code_folder/bin
