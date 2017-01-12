@@ -19,11 +19,13 @@ Getting Started/Running
 Simply run `make` in the 'tomato' directory to compile the code.
 
 To run:
-cd source_code_folder/bin
-./tomato
+
+    cd source_code_folder/bin
+    ./tomato
 
 To run while doing other work on command line:
-./tomato&
+
+    ./tomato&
 
 Before the timer starts it will ask you if you want to start. Press y to
 start. To quit press n, and press y when it asks you to quit.
@@ -35,7 +37,8 @@ To install, open tomato.sh and set the value of 'TOMATO_DIR' to the file
 path of the "tomato" folder.
 
 Then run
-chmod +x tomato.sh
+
+    chmod +x tomato.sh
 
 Next move tomato.sh to /usr/local/bin or /usr/bin.
 Then, create a symlink called tomato in the bin folder.
@@ -51,10 +54,12 @@ This should be installed by default on most Debian and Redhat desktop systems.
 If it is not installed for whatever reason, to install:
 
 Debian based systems:
-apt-get install pulseaudio
+
+    apt-get install pulseaudio
 
 To install in Fedora or similar systems:
-dnf install pulseaudio 
+
+    dnf install pulseaudio 
 
 Configuration
 -------------
