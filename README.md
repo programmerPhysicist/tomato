@@ -27,8 +27,8 @@ To run while doing other work on command line:
 
     ./tomato&
 
-Before the timer starts it will ask you if you want to start. Press y to
-start. To quit press n, and press y when it asks you to quit.
+Before the timer starts it will ask you if you want to start. Press _y_ to
+start. To quit press _n_, and press _y_ when it asks you to quit.
 
 Installation
 ------------
