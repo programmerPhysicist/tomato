@@ -49,6 +49,7 @@ Prerequisites
 -------------
 
 *PulseAudio sound server*
+*tmux 2.1*
 
 This should be installed by default on most Debian and Redhat desktop systems.
 If it is not installed for whatever reason, to install:

@@ -12,6 +12,7 @@ CFLAGS=-I.
 OBJDIR = build
 TARGET = bin/tomato
 OBJECTS = $(addprefix $(OBJDIR)/, settings.o tomato.o)
+LIBRARIES = $(addprefix -l, ncurses)
 
 #########################################################################
 # General rules
@@ -28,4 +29,4 @@ $(OBJDIR)/%.o: src/%.cpp
 	$(CXX) -c -o $@ $<
 
 $(TARGET): $(OBJECTS)
-	$(CXX) -o $@ $^ $(CFLAGS)
+	$(CXX) -o $@ $^ $(CFLAGS) $(LIBRARIES)
