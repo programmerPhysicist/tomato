@@ -8,23 +8,24 @@
  ************************************************************************/
 #include <iostream>
 #include <cstdlib>
+#include <string>
 #include <ncurses.h>
 #include "stdio.h"
 #include "tomato.h"
 #include "settings.h"
 using namespace std;
 
-bool timer(int minutes);
+void timer(int minutes);
 void playAlarm();
 void waitForUser();
 void displayMessage(string message);
+string itoa(int a);
 
 int main()
 {
   //initialize stuff
   settings config; //initialize settings object
   config.loadConfig(CONFIG_FILE); //load settings into config
-  bool success;
   while(true) //loop forever, or until user
     {
       for (int i = 0; i < 3; i++) //loop thru 4 pomodoros
@@ -33,39 +34,38 @@ int main()
 	  displayMessage("**Time to work!**");
 	  playAlarm();
 	  waitForUser();
-	  success = timer(config.workTime);
+	  timer(config.workTime);
 	  //break
 	  displayMessage("**Breaktime!**");
 	  playAlarm();
 	  waitForUser();
-	  success = timer(config.shortBreak);
+	  timer(config.shortBreak);
 	}
       //do work
       displayMessage("**Time to work!**");
       playAlarm();
       waitForUser();
-      success = timer(config.workTime);
+      timer(config.workTime);
       //then long break
       displayMessage("**Time for long break!**");
       playAlarm();
       waitForUser();
-      success = timer(config.longBreak);
+      timer(config.longBreak);
     }
   return 0;
 }
 
-bool timer(int minutes)
+void timer(int minutes)
 {
   int waitTime = 60*SECOND; //one minute
   for (int i = 0; i < minutes; i++) //loop thru minutes
     {
       //display
       cout << endl;
-      cout << "\tTime left:" << (minutes - i) << "m" << endl;
+      displayMessage("Time left: "+itoa(minutes-i)+"m");
       //wait
       WAIT(waitTime); //wait one minute
     }
-  return true;
 }
 
 void playAlarm()
@@ -99,4 +99,18 @@ void waitForUser()
 void displayMessage(string message)
 {
   cout << "\t" << message << endl;
+}
+
+string itoa(int a)
+{
+    string ss="";   //create empty string
+    while(a)
+    {
+        int x=a%10;
+        a/=10;
+        char i='0';
+        i=i+x;
+        ss=i+ss;      //append new character at the front of the string!
+    }
+    return ss;
 }
