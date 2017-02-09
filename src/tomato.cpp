@@ -17,6 +17,7 @@ using namespace std;
 bool timer(int minutes);
 void playAlarm();
 void waitForUser();
+void displayMessage(string message);
 
 int main()
 {
@@ -28,21 +29,24 @@ int main()
     {
       for (int i = 0; i < 3; i++) //loop thru 4 pomodoros
 	{
-	  cout << endl << "\t**Time to work!**\n";
+	  //work
+	  displayMessage("**Time to work!**");
 	  playAlarm();
 	  waitForUser();
 	  success = timer(config.workTime);
-	  cout << endl << "\t**Breaktime!**\n";
+	  //break
+	  displayMessage("**Breaktime!**");
 	  playAlarm();
 	  waitForUser();
 	  success = timer(config.shortBreak);
 	}
-      cout << endl << "\t**Time to work!**\n";
+      //do work
+      displayMessage("**Time to work!**");
       playAlarm();
       waitForUser();
       success = timer(config.workTime);
       //then long break
-      cout << "\t**Time for long break!**\n";
+      displayMessage("**Time for long break!**");
       playAlarm();
       waitForUser();
       success = timer(config.longBreak);
@@ -90,4 +94,9 @@ void waitForUser()
   while (a != 'y' && a != 'Y');
   //if yes exit loop and return
   return;
+}
+
+void displayMessage(string message)
+{
+  cout << "\t" << message << endl;
 }
