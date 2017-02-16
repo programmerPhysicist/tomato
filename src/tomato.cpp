@@ -18,12 +18,9 @@ using namespace std;
 int main()
 {
   //initialize stuff
-  settings config; //initialize settings object
+  //settings config; //initialize settings object
   pomodoro instance;
-  config.loadConfig(CONFIG_FILE); //load settings into config
-  //initialize our screen
   
-  instance.initializeDisplay();
   //displayMessage("Testing!");
   
   while(true) //loop forever, or until user
@@ -31,30 +28,36 @@ int main()
       for (int i = 0; i < 3; i++) //loop thru 4 pomodoros
 	{
 	  //work
-	  instance.displayMessage("**Time to work!**");
+	  instance.Display.displayMessage("**Time to work!**");
 	  instance.playAlarm();
 	  //waitForUser();
 	  //timer(config.workTime);
 	  //break
-	  instance.end();
-	  instance.displayMessage("**Breaktime!**");
+	  return 0;
+	  instance.Display.displayMessage("**Breaktime!**");
 	  instance.playAlarm();
 	  instance.waitForUser();
-	  instance.timer(config.shortBreak);
+	  //instance.timer(config.shortBreak);
 	}
       //do work
-      instance.displayMessage("**Time to work!**");
+      instance.Display.displayMessage("**Time to work!**");
       instance.playAlarm();
       instance.waitForUser();
-      instance.timer(config.workTime);
+      //instance.timer(config.workTime);
       //then long break
-      instance.displayMessage("**Time for long break!**");
+      instance.Display.displayMessage("**Time for long break!**");
       instance.playAlarm();
       instance.waitForUser();
-      instance.timer(config.longBreak);
+      //instance.timer(config.longBreak);
       }
-  instance.end();
   return 0;
+}
+
+pomodoro::pomodoro()
+{
+  //initialize configuration object
+  config.loadConfig(CONFIG_FILE); //load settings into config
+  //display constructor called automatically
 }
 
 void pomodoro::timer(int minutes)
@@ -64,7 +67,7 @@ void pomodoro::timer(int minutes)
     {
       //display
       cout << endl;
-      displayMessage("Time left: "+itoa(minutes-i)+"m");
+      Display.displayMessage("Time left: "+itoa(minutes-i)+"m");
       //wait
       WAIT(waitTime); //wait one minute
     }
@@ -91,7 +94,7 @@ void pomodoro::waitForUser()
 	  cin >> a;
 	  if (a == 'y' || a == 'Y')
 	     //if yes, quit application
-	    end();
+	    return;
 	}
     }
   while (a != 'y' && a != 'Y');
@@ -99,38 +102,8 @@ void pomodoro::waitForUser()
   return;
 }
 
-void pomodoro::displayMessage(string message)
+pomodoro::~pomodoro()
 {
-  //cout << "\t" << message << endl;
-  move(0,0);
-  clrtoeol();
-  printw(message.c_str());
-  refresh();
-}
-
-void pomodoro::initializeDisplay()
-{
-  //initialize window
-  initscr(); //start curses mode
-  cbreak(); //Disable line buffering
-  refresh(); //Now refresh screen
-
-  //setup bottom bar
-  WINDOW *bar = newwin(2, 80, 22, 0); //create new window
-  whline(bar, '_', 80); //draw line
-  wrefresh(bar); //refresh
-
-  //setup top bar
-  WINDOW *bar2 = newwin(2, 80, 1, 0); //create new window
-  whline(bar2, '_', 80);
-  wrefresh(bar2);
-  getch();
-}
-
-void pomodoro::end()
-{
-  endwin();
-  exit(0);
 }
 
 string pomodoro::itoa(int a)

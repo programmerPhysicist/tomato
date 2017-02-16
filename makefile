@@ -11,7 +11,7 @@ CXX=g++
 CFLAGS=-I.
 OBJDIR = build
 TARGET = bin/tomato
-OBJECTS = $(addprefix $(OBJDIR)/, settings.o tomato.o)
+OBJECTS = $(addprefix $(OBJDIR)/, settings.o tomato.o display.o)
 LIBRARIES = $(addprefix -l, ncurses)
 
 #########################################################################

@@ -38,17 +38,22 @@
 /*************************************************************************
  * pomodoro class definition
  *************************************************************************/
+#include "display.h"
+#include "settings.h"
 
 class pomodoro
 {
  public:
+  //methods
+  pomodoro();
   void timer(int minutes);
   void playAlarm();
   void waitForUser();
-  void displayMessage(std::string message);
-  void initializeDisplay();
-  void end();
+  display Display;
+  ~pomodoro();
+ private:
   std::string itoa(int a);
+  settings config;
 };
 
 #endif // TOMATO_H
