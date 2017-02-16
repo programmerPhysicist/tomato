@@ -34,4 +34,21 @@
 
 #endif // ENDIF for operating system choice
 /*************************************************************************/
+
+/*************************************************************************
+ * pomodoro class definition
+ *************************************************************************/
+
+class pomodoro
+{
+ public:
+  void timer(int minutes);
+  void playAlarm();
+  void waitForUser();
+  void displayMessage(std::string message);
+  void initializeDisplay();
+  void end();
+  std::string itoa(int a);
+};
+
 #endif // TOMATO_H
