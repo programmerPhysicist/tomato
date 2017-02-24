@@ -12,10 +12,11 @@ using namespace std;
 
 void display::displayMessage(string message)
 {
-  move(0,0);
-  clrtoeol();
-  printw(message.c_str());
-  refresh();
+  wmove(topBar, 0,0); //move curser back to begining
+  wrefresh(topBar); //refresh
+  whline(topBar, '_',80); //draw line for bottom
+  wprintw(topBar,message.c_str()); //print message
+  wrefresh(topBar); //refresh
 }
 
 display::display()
@@ -23,18 +24,18 @@ display::display()
   //initialize window
   initscr(); //start curses mode
   cbreak(); //Disable line buffering
+  curs_set(0); //Don't show curser
   refresh(); //Now refresh screen
 
   //setup bottom bar
-  WINDOW *bar = newwin(2, 80, 22, 0); //create new window
-  whline(bar, '_', 80); //draw line
-  wrefresh(bar); //refresh
+  bottomBar = newwin(2, 80, 22, 0); //create new window
+  whline(bottomBar, '_', 80); //draw line
+  wrefresh(bottomBar); //refresh
 
   //setup top bar
-  WINDOW *bar2 = newwin(2, 80, 1, 0); //create new window
-  whline(bar2, '_', 80);
-  wrefresh(bar2);
-  getch();
+  topBar = newwin(0, 80, 0, 0); //create new window
+  wattron(topBar, A_UNDERLINE); //text is to be underlined
+  
 }
 
 display::~display()

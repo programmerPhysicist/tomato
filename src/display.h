@@ -10,13 +10,21 @@
 #define TOMATO_DISPLAY_H
 
 #include <string>
+#include "ncurses.h"
 
 class display
 {
  public:
+  //constructor
   display();
+  //member methods
   void displayMessage(std::string message);
+  //destructor
   ~display();
+ private:
+  WINDOW *bottomBar;
+  WINDOW *topBar;
+  WINDOW *timerWin;
 };
 
 
