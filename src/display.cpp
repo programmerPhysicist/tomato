@@ -12,9 +12,12 @@ using namespace std;
 
 void display::displayMessage(string message)
 {
-  wmove(topBar, 0,0); //move curser back to begining
+  //do some other necessary stuff
+  int length = message.length(); //get length of message
+  wmove(topBar, 0, 0); //move curser back to beginning
   wrefresh(topBar); //refresh
   whline(topBar, '_',80); //draw line for bottom
+  wmove(topBar, 0, 40 - length/2 - 1); //move cursor to center text
   wprintw(topBar,message.c_str()); //print message
   wrefresh(topBar); //refresh
 }
