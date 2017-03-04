@@ -18,8 +18,8 @@ class display
   //constructor
   display();
   //member methods
-  void displayMessage(std::string message);
-  char getUserInput(std::string message);
+  void displayMessage(std::string message);  //put message out to screen
+  char getUserInput(std::string message); //get user input
   //destructor
   ~display();
  private:

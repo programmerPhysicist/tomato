@@ -25,25 +25,14 @@ int main()
       for (int i = 0; i < 3; i++) //loop thru 4 pomodoros
 	{
 	  //work
-	  instance.Display.displayMessage("**Time to work!**");
-	  instance.playAlarm();
-	  instance.waitForUser();
-	  //timer(config.workTime);
-	  instance.Display.displayMessage("**Breaktime!**");
-	  instance.playAlarm();
-	  instance.waitForUser();
-	  //instance.timer(config.shortBreak);
+	  instance.work();
+	  //take a rest
+	  instance.rest();
 	}
       //do work
-      instance.Display.displayMessage("**Time to work!**");
-      instance.playAlarm();
-      instance.waitForUser();
-      //instance.timer(config.workTime);
+      instance.work();
       //then long break
-      instance.Display.displayMessage("**Time for long break!**");
-      instance.playAlarm();
-      instance.waitForUser();
-      //instance.timer(config.longBreak);
+      instance.longBreak();
       }
   return 0;
 }
@@ -57,12 +46,14 @@ pomodoro::pomodoro()
 
 void pomodoro::timer(int minutes)
 {
+  int time = 0;
   int waitTime = 60*SECOND; //one minute
   for (int i = 0; i < minutes; i++) //loop thru minutes
     {
+      time++;
       //display
-      cout << endl;
-      Display.displayMessage("Time left: "+itoa(minutes-i)+"m");
+      //cout << endl;
+      //Display.displayMessage("Time left: "+itoa(minutes-i)+"m");
       //wait
       WAIT(waitTime); //wait one minute
     }
@@ -93,6 +84,30 @@ void pomodoro::waitForUser()
     while (a != 'y' && a != 'Y');
   //if yes exit loop and return
   return;
+}
+
+void pomodoro::work()
+{
+  Display.displayMessage("**Time to work!**");
+  playAlarm();
+  waitForUser();
+  timer(config.workTime);
+}
+
+void pomodoro::rest()
+{
+  Display.displayMessage("**Breaktime!**");
+  playAlarm();
+  waitForUser();
+  timer(config.shortBreak);
+}
+
+void pomodoro::longBreak()
+{
+  Display.displayMessage("**Time for long break!**");
+  playAlarm();
+  waitForUser();
+  timer(config.longBreak);
 }
 
 void pomodoro::quit()

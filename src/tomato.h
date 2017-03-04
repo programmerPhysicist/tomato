@@ -45,16 +45,19 @@ class pomodoro
 {
  public:
   //methods
-  pomodoro();
-  void timer(int minutes);
-  void playAlarm();
-  void waitForUser();
-  display Display;
-  void quit();
-  ~pomodoro();
+  pomodoro(); //constructor
+  void work(); //time to work
+  void rest(); //time for break
+  void longBreak(); //runs longer break
+  void quit(); //quit and return to normal terminal
+  ~pomodoro(); //destructor
  private:
+  void timer(int minutes); //run timer
+  void playAlarm(); //play an audiable alarm
+  void waitForUser(); //wait for input from user
   std::string itoa(int a);
-  settings config;
+  settings config; //store configuration and settings
+  display Display; //display object
 };
 
 #endif // TOMATO_H
