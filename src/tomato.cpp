@@ -18,10 +18,7 @@ using namespace std;
 int main()
 {
   //initialize stuff
-  //settings config; //initialize settings object
   pomodoro instance;
-  
-  //displayMessage("Testing!");
   
   while(true) //loop forever, or until user
     {
@@ -30,10 +27,8 @@ int main()
 	  //work
 	  instance.Display.displayMessage("**Time to work!**");
 	  instance.playAlarm();
-	  //waitForUser();
+	  instance.waitForUser();
 	  //timer(config.workTime);
-	  //break
-	  return 0;
 	  instance.Display.displayMessage("**Breaktime!**");
 	  instance.playAlarm();
 	  instance.waitForUser();
@@ -86,24 +81,29 @@ void pomodoro::waitForUser()
   char a;
   do
     {
-      cout << "\nStart timer(y/n): ";
-      cin >> a;
+      a = Display.getUserInput("Start time(y/n): ");
       if (a == 'n' || a == 'N')
 	{ //if no, ask if they want to quit
-	  cout << "Would you like to quit(y/n): ";
-	  cin >> a;
+	  a = Display.getUserInput("Would you like to quit(y/n): ");
 	  if (a == 'y' || a == 'Y')
 	     //if yes, quit application
-	    return;
+	    quit();
 	}
     }
-  while (a != 'y' && a != 'Y');
+    while (a != 'y' && a != 'Y');
   //if yes exit loop and return
   return;
 }
 
+void pomodoro::quit()
+{
+  this->~pomodoro();
+}
+
 pomodoro::~pomodoro()
 {
+  Display.~display();
+  exit(0);
 }
 
 string pomodoro::itoa(int a)

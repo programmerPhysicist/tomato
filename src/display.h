@@ -19,6 +19,7 @@ class display
   display();
   //member methods
   void displayMessage(std::string message);
+  char getUserInput(std::string message);
   //destructor
   ~display();
  private:

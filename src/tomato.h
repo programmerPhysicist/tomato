@@ -50,6 +50,7 @@ class pomodoro
   void playAlarm();
   void waitForUser();
   display Display;
+  void quit();
   ~pomodoro();
  private:
   std::string itoa(int a);
