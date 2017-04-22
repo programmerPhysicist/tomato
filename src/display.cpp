@@ -27,12 +27,12 @@ display::display()
   //setup timer window
   timerWin = newwin(22, 80, 1, 0);
   box(timerWin, 0, 0); //drawoutline of window
-  setClock("00:00");
-  wrefresh(timerWin);
+  setClock("00:00"); //draw clock
+  wrefresh(timerWin); //refresh timer window
   
   //setup bottom bar
   bottomBar = newwin(1, 80, 23, 0); //create new window
-  keypad(bottomBar, TRUE);
+  keypad(bottomBar, TRUE); //setup to receive input from user
   wrefresh(bottomBar); //refresh
 }
 
@@ -49,10 +49,10 @@ void display::displayMessage(string message)
 
 void display::setClock(string time)
 {
-  wmove(timerWin, 1, 1);
-  wclrtoeol(timerWin);
-  wprintw(timerWin, time.c_str());
-  wrefresh(timerWin);
+  wmove(timerWin, 1, 1); //move curser to location
+  wclrtoeol(timerWin); //erase line
+  wprintw(timerWin, time.c_str()); //print
+  wrefresh(timerWin); //refresh
 }
 
 char display::getUserInput(string message)
@@ -69,5 +69,5 @@ char display::getUserInput(string message)
 
 display::~display()
 {
-  endwin();
+  endwin(); //end ncurses mode
 }

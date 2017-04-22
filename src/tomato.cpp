@@ -20,7 +20,7 @@ int main()
   //initialize stuff
   pomodoro instance;
   
-  while(true) //loop forever, or until user
+  while(true) //loop forever, or until user hits CTRL+C
     {
       for (int i = 0; i < 3; i++) //loop thru 4 pomodoros
 	{
