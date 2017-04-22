@@ -46,15 +46,12 @@ pomodoro::pomodoro()
 
 void pomodoro::timer(int minutes)
 {
-  int time = 0;
   int waitTime = 60*SECOND; //one minute
-  for (int i = 0; i < minutes; i++) //loop thru minutes
+  
+  for (int i = minutes; i > 0; i--) //loop thru minutes
     {
-      time++;
-      //display
-      //cout << endl;
-      //Display.displayMessage("Time left: "+itoa(minutes-i)+"m");
-      //wait
+      //display clock
+      Display.setClock(itoa(i)+ ":00");
       WAIT(waitTime); //wait one minute
     }
 }
@@ -69,16 +66,17 @@ void pomodoro::playAlarm()
 
 void pomodoro::waitForUser()
 { //wait for user to start timer
-  char a;
+  char a = 'n';
   do
     {
       a = Display.getUserInput("Start time(y/n): ");
       if (a == 'n' || a == 'N')
 	{ //if no, ask if they want to quit
-	  a = Display.getUserInput("Would you like to quit(y/n): ");
+	  a = Display.getUserInput("Do you want to quit(y/n): ");
 	  if (a == 'y' || a == 'Y')
-	     //if yes, quit application
-	    quit();
+	    {
+	      this->~pomodoro();
+	    }
 	}
     }
     while (a != 'y' && a != 'Y');
@@ -91,7 +89,8 @@ void pomodoro::work()
   Display.displayMessage("**Time to work!**");
   playAlarm();
   waitForUser();
-  timer(config.workTime);
+  //timer(config.workTime);
+  timer(25);
 }
 
 void pomodoro::rest()

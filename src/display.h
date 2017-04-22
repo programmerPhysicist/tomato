@@ -20,6 +20,7 @@ class display
   //member methods
   void displayMessage(std::string message);  //put message out to screen
   char getUserInput(std::string message); //get user input
+  void setClock(std::string time);
   //destructor
   ~display();
  private:
