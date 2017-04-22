@@ -89,8 +89,7 @@ void pomodoro::work()
   Display.displayMessage("**Time to work!**");
   playAlarm();
   waitForUser();
-  //timer(config.workTime);
-  timer(25);
+  timer(config.workTime);
 }
 
 void pomodoro::rest()
