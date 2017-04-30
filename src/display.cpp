@@ -7,6 +7,7 @@
  *    Display the timer and messages for pomodoro class.
  ************************************************************************/
 #include <iostream>
+#include <stdlib.h>
 #include "display.h"
 #include "ncurses.h"
 using namespace std;
@@ -15,6 +16,14 @@ display::display()
 {
   //initialize window
   initscr(); //start curses mode
+  if(has_colors() == FALSE) //check to see if terminal supports colors
+    {
+      endwin();
+      printf("Your terminal doesn't support tomato\n");
+      exit(1);
+    }
+  start_color(); //turn color mode on
+  init_pair(1, COLOR_WHITE, COLOR_RED); //set colors
   cbreak(); //Disable line buffering
   curs_set(0); //Don't show curser
   noecho(); //Don't echo
@@ -25,13 +34,14 @@ display::display()
   //box(topBar, 0, 0);
 
   //setup timer window
-  timerWin = newwin(3, 20, 1, 0);
-  box(timerWin, 0, 0); //drawoutline of window
+  timerWin = newwin(1, 20, 1, 0);
+  wattron(timerWin,COLOR_PAIR(1));
+  //box(timerWin, 0, 0); //drawoutline of window
   setClock("00:00"); //draw clock
   wrefresh(timerWin); //refresh timer window
   
   //setup bottom bar
-  bottomBar = newwin(1, 30, 4, 0); //create new window
+  bottomBar = newwin(1, 30, 2, 0); //create new window
   keypad(bottomBar, TRUE); //setup to receive input from user
   wrefresh(bottomBar); //refresh
 }
@@ -50,9 +60,7 @@ void display::displayMessage(string message)
 
 void display::setClock(string time)
 {
-  wmove(timerWin, 1, 1); //move curser to start of line
-  wprintw(timerWin, "     "); //erase line
-  wmove(timerWin, 1, 1); //move curser back
+  wmove(timerWin, 0, 0); //move curser to start of line
   wprintw(timerWin, time.c_str()); //print
   wrefresh(timerWin); //refresh
 }
