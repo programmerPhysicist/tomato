@@ -34,4 +34,30 @@
 
 #endif // ENDIF for operating system choice
 /*************************************************************************/
+
+/*************************************************************************
+ * pomodoro class definition
+ *************************************************************************/
+#include "display.h"
+#include "settings.h"
+
+class pomodoro
+{
+ public:
+  //methods
+  pomodoro(); //constructor
+  void work(); //time to work
+  void rest(); //time for break
+  void longBreak(); //runs longer break
+  void quit(); //quit and return to normal terminal
+  ~pomodoro(); //destructor
+ private:
+  void timer(int minutes); //run timer
+  void playAlarm(); //play an audiable alarm
+  void waitForUser(); //wait for input from user
+  std::string itoa(int a);
+  settings config; //store configuration and settings
+  display Display; //display object
+};
+
 #endif // TOMATO_H

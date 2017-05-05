@@ -9,80 +9,55 @@
 #include <iostream>
 #include <cstdlib>
 #include <iomanip>
+#include <string>
+#include <ncurses.h>
 #include "stdio.h"
 #include "tomato.h"
 #include "settings.h"
 using namespace std;
 
-bool timer(int minutes);
-void playAlarm();
-void waitForUser();
-
 int main()
 {
   //initialize stuff
-  settings config; //initialize settings object
-  config.loadConfig(CONFIG_FILE); //load settings into config
-  bool success;
+  pomodoro instance;
   
-  while(true) //loop forever, or until user kills program
+  while(true) //loop forever, or until user hits CTRL+C
     {
       for (int i = 0; i < 3; i++) //loop thru 4 pomodoros
 	{
-	  cout << "**Time to work!**\n";
-	  playAlarm();
-	  waitForUser();
-	  success = timer(config.workTime);
-	  cout << "\033[A"; //move up
-	  cout << "\033[10D"; //move left
-	  cout << "\033[2K"; //erase line
-	  cout << "**Breaktime!**\n";
-	  playAlarm();
-	  waitForUser();
-	  success = timer(config.shortBreak);
-	  cout << "\033[A";
-	  cout << "\033[10D";
-	  cout << "\033[2K";
+	  //work
+	  instance.work();
+	  //take a rest
+	  instance.rest();
 	}
-      //last pomodoro
-      cout << "**Time to work!**\n";
-      playAlarm();
-      waitForUser();
-      success = timer(config.workTime);
+      //do work
+      instance.work();
       //then long break
-      cout << "\033[A";
-      cout << "\033[10D";
-      cout << "\033[2K";
-      cout << "**Time for long break!**\n";
-      playAlarm();
-      waitForUser();
-      success = timer(config.longBreak);
-      //prepare to go back to work
-      cout << "\033[A";
-      cout << "\033[25D";
-      cout << "\033[2K";
-    }
+      instance.longBreak();
+     }
   return 0;
 }
 
-bool timer(int minutes)
+pomodoro::pomodoro()
 {
-  int waitTime = 60*SECOND; //one minute
-  cout << "Time left:";
-  for (int i = 0; i < minutes; i++) //loop thru minutes
-    {
-      //display
-      //display time in minutes
-      cout << setw(3) << (minutes - i) << "m" << flush;
-      //wait
-      WAIT(waitTime); //wait one minute
-      //move cursor back to write new time
-      cout << "\033[4D";
-    }
-  return true;
+  //initialize configuration object
+  config.loadConfig(CONFIG_FILE); //load settings into config
+  //display constructor called automatically
 }
 
-void playAlarm()
+void pomodoro::timer(int minutes)
+{
+  int waitTime = 60*SECOND; //one minute
+  
+  for (int i = minutes; i > 0; i--) //loop thru minutes
+    {
+      //display clock
+      Display.setClock(itoa(i)+ ":00");
+      WAIT(waitTime); //wait one minute
+    }
+}
+
+void pomodoro::playAlarm()
 {
   #ifdef LINUX_UNIX
   //play ringing sound
@@ -90,40 +65,71 @@ void playAlarm()
   #endif
 }
 
-void waitForUser()
+void pomodoro::waitForUser()
 { //wait for user to start timer
-  char a;
-  cout << "Start timer(y/n): ";
-  cin >> a;
-  while (a != 'y' && a != 'Y')
+  char a = 'n';
+  do
     {
+      a = Display.getUserInput("Start time(y/n): ");
       if (a == 'n' || a == 'N')
 	{ //if no, ask if they want to quit
-	  cout << "\033[A";
-	  cout << "\033[18D";
-	  cout << "\033[2K";
-	  cout << "Would you like to quit(y/n): ";
-	  cin >> a;
+	  a = Display.getUserInput("Do you want to quit(y/n): ");
 	  if (a == 'y' || a == 'Y')
-	    exit(0); //if yes, quit application
-	  cout << "\033[A";
-	  cout << "\033[25D";
-	  cout << "\033[2K";
+	    {
+	      this->~pomodoro();
+	    }
 	}
-      else
-	{
-	  cout << "\033[A";
-	  cout << "\033[18D";
-	  cout << "\033[2K";
-	  cout << "Please try again! ";
-	}
-      
-      cout << "Start timer(y/n): ";
-      cin >> a;
     }
-  cout << "\033[A";
-  cout << "\033[18D";
-  cout << "\033[2K";
+    while (a != 'y' && a != 'Y');
   //if yes exit loop and return
   return;
+}
+
+void pomodoro::work()
+{
+  Display.displayMessage("**Time to work!**");
+  playAlarm();
+  waitForUser();
+  timer(config.workTime);
+}
+
+void pomodoro::rest()
+{
+  Display.displayMessage("**Breaktime!**");
+  playAlarm();
+  waitForUser();
+  timer(config.shortBreak);
+}
+
+void pomodoro::longBreak()
+{
+  Display.displayMessage("**Time for long break!**");
+  playAlarm();
+  waitForUser();
+  timer(config.longBreak);
+}
+
+void pomodoro::quit()
+{
+  this->~pomodoro();
+}
+
+pomodoro::~pomodoro()
+{
+  Display.~display();
+  exit(0);
+}
+
+string pomodoro::itoa(int a)
+{
+    string ss="";   //create empty string
+    while(a)
+    {
+        int x=a%10;
+        a/=10;
+        char i='0';
+        i=i+x;
+        ss=i+ss;      //append new character at the front of the string!
+    }
+    return ss;
 }
