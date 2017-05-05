@@ -71,7 +71,7 @@ The first line is the work time, second is the length of the break, and
 the last line is that of the long break. Numbers are in minutes.
 
 The format is:
-keyword = #
+`keyword = #`
 * keyword is either *worktime*, *breaktime*, or *longbreak*
 * "#" is any integer
 * There must be spaces before and after each equal sign
