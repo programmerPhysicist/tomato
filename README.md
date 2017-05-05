@@ -73,7 +73,7 @@ the last line is that of the long break. Numbers are in minutes.
 The format is:
 keyword = #
 * keyword is either *worktime*, *breaktime*, or *longbreak*
-* # is any integer
+* is any integer
 * There must be spaces before and after each equal sign
 * Any extra white spaces beyond those may cause the program to throw an
   error.
