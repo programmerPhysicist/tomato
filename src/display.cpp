@@ -34,14 +34,14 @@ display::display()
   //box(topBar, 0, 0);
 
   //setup timer window
-  timerWin = newwin(1, 20, 1, 0);
+  timerWin = newwin(1, 7, 0, 21);
   wattron(timerWin,COLOR_PAIR(1));
   //box(timerWin, 0, 0); //drawoutline of window
   setClock("00:00"); //draw clock
   wrefresh(timerWin); //refresh timer window
   
   //setup bottom bar
-  bottomBar = newwin(1, 30, 2, 0); //create new window
+  bottomBar = newwin(1, 30, 0, 29); //create new window
   keypad(bottomBar, TRUE); //setup to receive input from user
   wrefresh(bottomBar); //refresh
 }
