@@ -69,7 +69,7 @@ void pomodoro::waitForUser()
   char a = 'n';
   do
     {
-      a = Display.getUserInput("Start time(y/n): ");
+      a = Display.getUserInput("");
       if (a == 'n' || a == 'N')
 	{ //if no, ask if they want to quit
 	  a = Display.getUserInput("Do you want to quit(y/n): ");
@@ -79,14 +79,14 @@ void pomodoro::waitForUser()
 	    }
 	}
     }
-    while (a != 'y' && a != 'Y');
+    while (a != 's' && a != 'S');
   //if yes exit loop and return
   return;
 }
 
 void pomodoro::work()
 {
-  Display.displayMessage("**Time to work!**");
+  Display.displayMessage("Time to work! Press s to start...");
   playAlarm();
   waitForUser();
   timer(config.workTime);
