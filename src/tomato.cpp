@@ -96,7 +96,7 @@ void pomodoro::work()
 
 void pomodoro::rest()
 {
-  Display.displayMessage("**Breaktime!**");
+  Display.displayMessage("Breaktime!");
   playAlarm();
   waitForUser();
   timer(config.shortBreak);
@@ -104,7 +104,7 @@ void pomodoro::rest()
 
 void pomodoro::longBreak()
 {
-  Display.displayMessage("**Time for long break!**");
+  Display.displayMessage("Time for a long break!");
   playAlarm();
   waitForUser();
   timer(config.longBreak);
