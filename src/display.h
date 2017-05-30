@@ -25,7 +25,7 @@ class display
   ~display();
  private:
   WINDOW *msgBar;
-  WINDOW *topBar;
+  WINDOW *backWin;
   WINDOW *timerWin;
 };
 
