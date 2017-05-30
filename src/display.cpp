@@ -37,6 +37,8 @@ display::display()
   backWin = newwin(1, 80, 0, 0); //create new window
   wattron(backWin, COLOR_PAIR(1));
   wbkgd(backWin, COLOR_PAIR(1));
+  wmove(backWin, 0, 73);
+  wprintw(backWin, "Tomato");
   wrefresh(backWin);
 
   //setup timer window

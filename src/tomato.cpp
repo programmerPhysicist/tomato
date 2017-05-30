@@ -47,6 +47,8 @@ pomodoro::pomodoro()
 void pomodoro::timer(int minutes)
 {
   int waitTime = 60*SECOND; //one minute
+
+  Display.displayMessage("Timer started!");
   
   for (int i = minutes; i > 0; i--) //loop thru minutes
     {
