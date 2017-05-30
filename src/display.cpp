@@ -19,18 +19,18 @@ display::display()
   if(has_colors() == FALSE) //check to see if terminal supports colors
     {
       endwin();
-      printf("Your terminal doesn't support tomato\n");
+      printf("Tomato does not support your terminal!");
       exit(1);
     }
   start_color(); //turn color mode on
-  init_pair(1, COLOR_WHITE, COLOR_RED); //set colors
+  init_pair(1, COLOR_BLACK, COLOR_GREEN); //set colors
   cbreak(); //Disable line buffering
   curs_set(0); //Don't show curser
   noecho(); //Don't echo
   refresh(); //Now refresh screen
 
   //setup top bar
-  topBar = newwin(1, 6, 0, 0); //create new window
+  topBar = newwin(1, 7, 0, 0); //create new window
   wattron(topBar, COLOR_PAIR(1));
   wprintw(topBar, "Tomato ");
   wrefresh(topBar);
@@ -38,13 +38,14 @@ display::display()
   //setup timer window
   timerWin = newwin(1, 1, 0, 7);
   wattron(timerWin,COLOR_PAIR(1));
-  //box(timerWin, 0, 0); //drawoutline of window
+  wbkgd(timerWin, COLOR_PAIR(1));
   //setClock("00:00"); //draw clock
-  //wrefresh(timerWin); //refresh timer window
+  wrefresh(timerWin); //refresh timer window
   
   //setup bottom bar
-  bottomBar = newwin(1, 40, 0, 8); //create new window
+  bottomBar = newwin(1, 72, 0, 8); //create new window
   wattron(bottomBar, COLOR_PAIR(1));
+  wbkgd(bottomBar, COLOR_PAIR(1));
   keypad(bottomBar, TRUE); //setup to receive input from user
   wrefresh(bottomBar); //refresh
 }
