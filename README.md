@@ -1,6 +1,6 @@
 Tomato
 
-Version: 0.1, beta 12/26/2016
+Version: 0.2, beta 06/03/2017
 
 Author: Alex Marvin
 
@@ -20,15 +20,10 @@ Simply run `make` in the **tomato** directory to compile the code.
 
 To run:
 
-    cd source_code_folder/bin
-    ./tomato
+    tomato
 
-To run while doing other work on command line:
-
-    ./tomato&
-
-Before the timer starts it will ask you if you want to start. Press _y_ to
-start. To quit press _n_, and press _y_ when it asks you to quit.
+A bar will show up at the top. Press `s` to start the timer. Depending on the message, 
+it will start the break or work timer.
 
 Installation
 ------------
