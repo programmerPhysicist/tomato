@@ -24,8 +24,8 @@ class display
   //destructor
   ~display();
  private:
-  WINDOW *bottomBar;
-  WINDOW *topBar;
+  WINDOW *msgBar;
+  WINDOW *backWin;
   WINDOW *timerWin;
 };
 
