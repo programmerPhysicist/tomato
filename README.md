@@ -25,6 +25,8 @@ To run:
 A bar will show up at the top. Press `s` to start the timer. Depending on the message, 
 it will start the break or work timer.
 
+To stop the program, simply press `CTRL+C`
+
 Installation
 ------------
 
