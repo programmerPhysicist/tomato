@@ -13,11 +13,8 @@ The Pomodoro technique is a productivity technique in which you work for
 minutes. Each 25 minute period is known as a Pomodoro. You repeat as many
 times as necessary. After 4 Pomodoros, you take a longer break.
 
-Getting Started/Running
------------------------
-
-Simply run `make` in the **tomato** directory to compile the code.
-
+Running
+-------
 To run:
 
     tomato
@@ -29,8 +26,9 @@ To stop the program, simply press `CTRL+C`
 
 Installation
 ------------
+Run `make` in the **tomato** directory to compile the code.
 
-To install, open tomato.sh and set the value of **TOMATO_DIR** to the file
+Then open tomato.sh and set the value of **TOMATO_DIR** to the file
 path of the **tomato** folder.
 
 Then run
