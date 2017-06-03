@@ -88,7 +88,7 @@ void pomodoro::waitForUser()
 
 void pomodoro::work()
 {
-  Display.displayMessage("Time to work! Press s to start...");
+  Display.displayMessage("Time to work!");
   playAlarm();
   waitForUser();
   timer(config.workTime);
