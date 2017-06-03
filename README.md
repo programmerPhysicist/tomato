@@ -26,6 +26,8 @@ To stop the program, simply press `CTRL+C`
 
 Installation
 ------------
+Make sure that the prequisites below are installed before installation.
+
 Run `make` in the **tomato** directory to compile the code.
 
 Then open tomato.sh and set the value of **TOMATO_DIR** to the file
@@ -44,7 +46,6 @@ Prerequisites
 -------------
 
 *PulseAudio sound server*
-*tmux 2.1*
 
 This should be installed by default on most Debian and Redhat desktop systems.
 If it is not installed for whatever reason, to install:
