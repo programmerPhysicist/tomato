@@ -8,6 +8,7 @@
  ************************************************************************/
 #include <iostream>
 #include <stdlib.h>
+#include <signal.h>
 #include "display.h"
 #include "ncurses.h"
 using namespace std;
@@ -17,6 +18,7 @@ display::display()
   //initialize window
   initscr(); //start curses mode
 
+  signal (SIGWINCH, NULL);
   //setup colors
   if(has_colors() == FALSE) //check to see if terminal supports colors
     {
