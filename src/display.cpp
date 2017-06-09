@@ -18,6 +18,8 @@ display::display()
   //initialize window
   initscr(); //start curses mode
 
+  getTermSize(); //get and store size of terminal
+
   signal (SIGWINCH, NULL);
   //setup colors
   if(has_colors() == FALSE) //check to see if terminal supports colors
@@ -36,22 +38,22 @@ display::display()
   refresh(); //Now refresh screen
 
   //setup background window
-  backWin = newwin(1, 80, 0, 0); //create new window
+  backWin = newwin(1, x, 0, 0); //create new window
   wattron(backWin, COLOR_PAIR(1));
   wbkgd(backWin, COLOR_PAIR(1));
-  wmove(backWin, 0, 73);
+  wmove(backWin, 0, x-7);
   wprintw(backWin, "Tomato");
   wrefresh(backWin);
 
   //setup timer window
-  timerWin = newwin(1, 7, 0, 41);
+  timerWin = newwin(1, 7, 0, (x/2));
   wattron(timerWin,COLOR_PAIR(1));
   wbkgd(timerWin, COLOR_PAIR(1));
   setClock("00:00"); //draw clock
   wrefresh(timerWin); //refresh timer window
   
   //setup message bar
-  msgBar = newwin(1, 40, 0, 0); //create new window
+  msgBar = newwin(1, 20, 0, 0); //create new window
   wattron(msgBar, COLOR_PAIR(1));
   wbkgd(msgBar, COLOR_PAIR(1));
   keypad(msgBar, TRUE); //setup to receive input from user
@@ -84,6 +86,11 @@ char display::getUserInput(string message)
   a = wgetch(msgBar); //get message
   curs_set(0); //make cursor invisible again
   return a; //return char
+}
+
+void display::getTermSize()
+{
+  getmaxyx(stdscr, y, x);
 }
 
 display::~display()

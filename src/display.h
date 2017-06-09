@@ -21,9 +21,12 @@ class display
   void displayMessage(std::string message);  //put message out to screen
   char getUserInput(std::string message); //get user input
   void setClock(std::string time);
+  void getTermSize();
   //destructor
   ~display();
  private:
+  int x;
+  int y;
   WINDOW *msgBar;
   WINDOW *backWin;
   WINDOW *timerWin;
