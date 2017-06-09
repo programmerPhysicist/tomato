@@ -95,5 +95,8 @@ void display::getTermSize()
 
 display::~display()
 {
+  delwin(backWin);
+  delwin(msgBar);
+  delwin(timerWin);
   endwin(); //end ncurses mode
 }
