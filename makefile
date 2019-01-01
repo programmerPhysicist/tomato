@@ -7,12 +7,13 @@
 #    Makefile for Tomato
 #########################################################################
 SHELL = /bin/sh
+BOOST_PATH = /usr/local/lib
 CXX=g++
 CFLAGS=-I.
 OBJDIR = build
 TARGET = bin/tomato
-OBJECTS = $(addprefix $(OBJDIR)/, settings.o tomato.o display.o)
-LIBRARIES = $(addprefix -l, ncurses)
+OBJECTS = $(addprefix $(OBJDIR)/, pomodoro.o tomato.o display.o)
+LIBRARIES = $(addprefix -l, ncurses) $(BOOST_PATH)/libboost_program_options.a
 
 #########################################################################
 # General rules

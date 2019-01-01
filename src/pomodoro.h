@@ -1,13 +1,13 @@
 /***********************************************************************
 * Header File:
-*   tomato.h
+*   pomodoro.h
 * Author:
 *   Alexander Marvin
 * Summary:
-*   Header file for tomato program
+*   Header file for pomodoro class
 ************************************************************************/
-#ifndef TOMATO_H
-#define TOMATO_H
+#ifndef POMODORO_H
+#define POMODORO_H
 
 /******************Choose between operating systems*********************/
 
@@ -25,13 +25,7 @@
 #define LINUX_UNIX
 #define WAIT usleep
 #define SECOND 1000000
-
-//define name/directory for config file
-
-#ifndef NDEBUG
 #define CONFIG_FILE ".tomato"
-#endif // define config file
-
 #endif // ENDIF for operating system choice
 /*************************************************************************/
 
@@ -39,25 +33,26 @@
  * pomodoro class definition
  *************************************************************************/
 #include "display.h"
-#include "settings.h"
 
 class pomodoro
 {
  public:
   //methods
-  pomodoro(); //constructor
+  pomodoro(int work, int shortB, int longB); //constructor
   void work(); //time to work
   void rest(); //time for break
   void longBreak(); //runs longer break
   void quit(); //quit and return to normal terminal
+  int workTime;
+  int breakTime;
+  int longTime;
   ~pomodoro(); //destructor
  private:
   void timer(int minutes); //run timer
   void playAlarm(); //play an audiable alarm
   void waitForUser(); //wait for input from user
   std::string itoa(int a);
-  settings config; //store configuration and settings
   display Display; //display object
 };
 
-#endif // TOMATO_H
+#endif // POMODORO_H
