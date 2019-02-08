@@ -7,14 +7,16 @@
  *    Pomodoro class that has everything need to run one pomodoro.
  ************************************************************************/
 #include <string>
+#include <iostream>
 #include "pomodoro.h"
 using namespace std;
 
-pomodoro::pomodoro(int work, int shortB, int longB)
+pomodoro::pomodoro(int work, int shortB, int longB, string home)
 {
   workTime = work;
   breakTime = shortB;
   longTime = longB;
+  tomatoHome = home;
 }
 
 void pomodoro::timer(int minutes)
@@ -35,7 +37,8 @@ void pomodoro::playAlarm()
 {
   #ifdef LINUX_UNIX
   //play ringing sound
-  system("paplay 'sounds/alarm_tones/bell.wav'");
+  string command = "paplay "+tomatoHome+SOUND_FILE;
+  int i = system(command.c_str());
   #endif
 }
 
