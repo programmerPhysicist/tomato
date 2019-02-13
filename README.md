@@ -1,6 +1,6 @@
 Tomato
 
-Version: 0.2, beta 06/03/2017
+Version: 0.3, beta 02/12/2019
 
 Author: Alex Marvin
 
@@ -30,17 +30,12 @@ Make sure that the prequisites below are installed before installation.
 
 Run `make` in the **tomato** directory to compile the code.
 
-Then open tomato.sh and set the value of **TOMATO_DIR** to the file
-path of the **tomato** folder.
+Then run 
 
-Then run
-
-    chmod +x tomato.sh
-
-Next move tomato.sh to **/usr/local/bin** or **/usr/bin**.
-Then, create a symlink called tomato in the bin folder.
-
-Alternatively, you can create a symlink to the location of tomato.sh
+    sudo ./install.sh
+    
+If you don't have sudoer privileges, run the above script. 
+You will have to set the path for the executable though.
 
 Prerequisites
 -------------
@@ -57,6 +52,17 @@ Debian based systems:
 To install in Fedora or similar systems:
 
     dnf install pulseaudio 
+    
+*Required Libraries*
+
+Run the following command for
+Debian based systems:
+
+    sudo apt-get install libboost-all-dev libncurses5-dev libncursesw5-dev
+    
+On Redhat based systems:
+
+    yum install boost-devel ncurses-devel
 
 Configuration
 -------------
@@ -67,9 +73,6 @@ The first line is the work time, second is the length of the break, and
 the last line is that of the long break. Numbers are in minutes.
 
 The format is:
-`keyword = #`
+`keyword = 5`
 * keyword is either *worktime*, *breaktime*, or *longbreak*
-* "#" is any integer
-* There must be spaces before and after each equal sign
-* Any extra white spaces beyond those may cause the program to throw an
-  error.
+* "5" is the number of minutes
