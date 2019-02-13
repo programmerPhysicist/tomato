@@ -35,3 +35,4 @@ $(OBJDIR)/%.o: src/%.cpp include/%.h
 
 $(TARGET): $(OBJECTS)
 	$(CXX) -o $@ $^ $(CFLAGS) $(LIBRARIES)
+	chmod +x install.sh
