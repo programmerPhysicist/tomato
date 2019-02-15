@@ -35,10 +35,14 @@ void pomodoro::timer(int minutes)
 
 void pomodoro::playAlarm()
 {
-  #ifdef LINUX_UNIX
+  #if defined(LINUX_UNIX) && !defined(__CYGWIN__)
   //play ringing sound
   string command = "paplay "+tomatoHome+SOUND_FILE;
   int i = system(command.c_str());
+
+  #elif defined(__CYGWIN__)
+  //play bell sound
+  system("echo \a");
   #endif
 }
 
