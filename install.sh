@@ -4,6 +4,9 @@ if [ $(id -u) -ne 0 ]
 then
     echo "Installing tomato as local user $USER..."
 
+    echo "Creating application directory..."
+    mkdir -p $HOME/tomato
+
     echo "Copying executable to app folder..."
     if [ -e bin/tomato ]
     then
@@ -23,8 +26,6 @@ then
 	echo "Installed configuration file."
     fi
 
-    echo "Creating application directory..."
-    mkdir -p $HOME/tomato
     echo "Copying resources to app folder..."
     cp -r src/resources/sounds/ $HOME/tomato
     echo "Done."
