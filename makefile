@@ -6,29 +6,35 @@
 # Summary: 
 #    Makefile for Tomato
 #########################################################################
+ifeq ($(OS),Windows_NT)
+    SYSTEM=Windows
+else
+    SYSTEM=$(shell uname -s)
+endif
 SHELL = /bin/sh
 CXX=g++
 CFLAGS=-I./include/
 INCLDDIR = include
 DEPS=$(addprefix $(INCLDDIR)/, pomodoro.h display.h)
 OBJDIR = build
-TARGET = bin/tomato
+BIN = bin/tomato
 OBJECTS = $(addprefix $(OBJDIR)/, pomodoro.o tomato.o display.o)
 LIBRARIES = $(addprefix -l, ncurses boost_program_options)
 
 #########################################################################
 # General rules
 #########################################################################
-all: $(TARGET)
+all: $(BIN)
 
 clean:
-	rm -f $(OBJDIR)/*.o $(TARGET) *~ src/*~ .*~
+	rm -rf $(OBJDIR)/*.o $(BIN) target/ *~ src/*~ .*~
 
-package:
+package: all
 	mkdir -p target/tomato
 	cp bin/tomato* target/tomato/
 	cp -r src/resources/ target/tomato/resources/
-	cp install.sh target/tomato/
+	cp *.sh target/tomato/
+	tar -czf target/tomato-0.3-install-$(SYSTEM).tar.gz target/tomato
 
 #########################################################################
 # Generic build rules
@@ -39,6 +45,6 @@ $(OBJDIR)/tomato.o: src/tomato.cpp $(DEPS)
 $(OBJDIR)/%.o: src/%.cpp include/%.h
 	$(CXX) -c -o $@ $< $(CFLAGS)
 
-$(TARGET): $(OBJECTS)
+$(BIN): $(OBJECTS)
 	$(CXX) -o $@ $^ $(CFLAGS) $(LIBRARIES)
-	chmod +x install.sh
+	chmod +x *.sh
