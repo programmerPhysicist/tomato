@@ -24,6 +24,12 @@ all: $(TARGET)
 clean:
 	rm -f $(OBJDIR)/*.o $(TARGET) *~ src/*~ .*~
 
+package:
+	mkdir -p target/tomato
+	cp bin/tomato* target/tomato/
+	cp -r src/resources/ target/tomato/resources/
+	cp install.sh target/tomato/
+
 #########################################################################
 # Generic build rules
 #########################################################################
