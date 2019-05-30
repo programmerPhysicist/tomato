@@ -39,19 +39,6 @@ You will have to set the path for the executable though.
 
 Prerequisites
 -------------
-
-*PulseAudio sound server*
-
-This should be installed by default on most Debian and Redhat desktop systems.
-If it is not installed for whatever reason, to install:
-
-Debian based systems:
-
-    apt-get install pulseaudio
-
-To install in Fedora or similar systems:
-
-    dnf install pulseaudio 
     
 *Required Libraries*
 
