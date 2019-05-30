@@ -108,14 +108,6 @@ int main(int ac, char* av[])
       }
     }
     
-    //check that soundfile exists
-    string soundPath = tomatoHome+SOUND_FILE;
-    if (!std::ifstream(soundPath.c_str()))
-    {
-      cout << "ERROR: Cannot find sound file in " << tomatoHome << endl;
-      return 1;
-    }
-    
     //initialize stuff
     pomodoro instance = pomodoro(vm["worktime"].as<int>(),
 				 vm["breaktime"].as<int>(),

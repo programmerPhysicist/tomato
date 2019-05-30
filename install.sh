@@ -33,11 +33,6 @@ then
 	echo "Installed configuration file."
     fi
 
-    echo "Copying resources to app folder..."
-    cp -r $RES_PATH/sounds/ $HOME/tomato
-    echo "Done."
-    echo "Please set bin path to $HOME/tomato/"
-
 else
     echo "Installing tomato as root..."
     echo "Copying executable to bin..."
@@ -57,8 +52,5 @@ else
 
     echo "Creating application directory..."
     mkdir /usr/local/share/tomato
-    echo "Copying resources to app directory..."
-    cp -r $RES_PATH/sounds/ /usr/local/share/tomato
-    echo "Finished."
 fi
 
