@@ -54,10 +54,6 @@ else
 	    cp $RES_PATH/example.tomato $DIR/.tomato
 	fi
     done
-    if [ -e /root/.tomato ]
-    then
-	cp $RES_PATH/example.tomato /root/.tomato
-    fi
 
     echo "Creating application directory..."
     mkdir /usr/local/share/tomato
