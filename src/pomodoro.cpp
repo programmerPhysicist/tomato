@@ -91,7 +91,6 @@ void pomodoro::quit()
 pomodoro::~pomodoro()
 {
   Display.~display();
-  exit(0);
 }
 
 string pomodoro::itoa(int a)

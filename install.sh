@@ -29,7 +29,7 @@ then
     then
 	echo "Configuration file already exists."
     else
-	cp $RES_PATH/example.tomato $HOME/.tomato
+	cp $RES_PATH/settings.default $HOME/.tomato
 	echo "Installed configuration file."
     fi
 
